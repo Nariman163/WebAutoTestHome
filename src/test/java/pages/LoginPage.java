@@ -28,7 +28,7 @@ public class LoginPage {
     //Метод для выполнения авторизации
     public void login(String user, String password) {
         driver.findElement(usernameField).sendKeys(user);
+        driver.findElement(passwordField).sendKeys(password);
+        driver.findElement(loginButton).click();
     }
-
-    //
 }
