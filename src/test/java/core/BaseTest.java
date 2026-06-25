@@ -1,4 +1,4 @@
-package tests;
+package core;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.AfterEach;
@@ -24,7 +24,7 @@ public class BaseTest {
 
     @AfterEach
     public void tearDown() {
-        if (driver != null); {
+        if (driver != null) {
             driver.quit();
         }
     }

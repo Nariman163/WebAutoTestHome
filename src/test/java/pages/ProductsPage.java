@@ -1,28 +1,27 @@
 package pages;
+import core.BasePage;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class ProductsPage {
-    private WebDriver driver;
-    private WebDriverWait wait;
+public class ProductsPage extends BasePage {
 
     //Локаторы
-    private By pageTitle = By.className("title");
-    private By productItem = By.className("inventory_item");
-    private By firstProductName = By.cssSelector(".inventory_item:first-child .inventory_item_name");
-    private By firstAddToCartButton = By.cssSelector(".inventory_item:first-child .btn_inventory");
-    private By cartLink = By.className("shopping_cart_link");
+    private final By pageTitle = By.className("title");
+    private final By productItem = By.className("inventory_item");
+    private final By firstProductName = By.cssSelector(".inventory_item:first-child .inventory_item_name");
+    private final By firstAddToCartButton = By.cssSelector(".inventory_item:first-child .btn_inventory");
+    private final By cartLink = By.className("shopping_cart_link");
 
-    public ProductsPage(WebDriver driver, WebDriverWait wait) {
-        this.driver = driver;
-        this.wait = wait;
+    public ProductsPage(WebDriver driver) {
+       super(driver);
     }
 
     //Ждем загрузки страницы
     public void waitPageLoaded() {
+
         wait.until(ExpectedConditions.visibilityOfElementLocated(pageTitle));
     }
 
@@ -33,17 +32,19 @@ public class ProductsPage {
 
     //Получаем название первого товара
     public String getFirstProductName() {
+
         return driver.findElement(firstProductName).getText();
     }
 
     //Добавлям первый товар в корзину
     public void addFirstProductToCart() {
-        driver.findElement(firstAddToCartButton).click();
+
+        click(firstAddToCartButton);
     }
 
     //Переходим в корзину
     public void goToCart() {
-        driver.findElement(cartLink).click();
+        click(cartLink);
     }
 
 }
